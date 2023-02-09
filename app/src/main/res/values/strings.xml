@@ -3,4 +3,7 @@
     <string name="tv_text_drink_name">Drink name</string>
     <string name="iv_content_description_cocktail_picture">Cocktail picture</string>
     <string name="ib_content_description_star_button">Star button</string>
+    <string name="tv_text_measure">measure</string>
+    <string name="tv_text_ingredient">ingredient</string>
+    <string name="tv_text_bullet">•</string>
 </resources>
