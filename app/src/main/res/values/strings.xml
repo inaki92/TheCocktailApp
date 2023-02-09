@@ -11,4 +11,8 @@
     <string name="mi_title_home">Home</string>
     <string name="mi_title_filter">Filter</string>
     <string name="mi_title_favorites">Favorites</string>
+    <string name="tv_text_filters">Filters</string>
+    <string name="tv_text_category">Category</string>
+    <string name="tv_text_glass">Glass</string>
+    <string name="tv_text_alcoholic">Alcoholic</string>
 </resources>
