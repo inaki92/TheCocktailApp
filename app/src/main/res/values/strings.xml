@@ -6,4 +6,6 @@
     <string name="tv_text_measure">measure</string>
     <string name="tv_text_ingredient">ingredient</string>
     <string name="tv_text_bullet">•</string>
+    <string name="tv_text_ingredients">Ingredients</string>
+    <string name="tv_text_instructions">Instructions</string>
 </resources>
