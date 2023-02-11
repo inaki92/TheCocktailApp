@@ -1,4 +1,4 @@
-package com.example.starwarsmvvm.utils
+package com.example.thecocktail.utils
 
 sealed class UIState<out T> {
     object LOADING : UIState<Nothing>()
