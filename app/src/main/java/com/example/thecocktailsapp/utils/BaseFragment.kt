@@ -1,4 +1,4 @@
-package com.example.starwarsmvvm.utils
+package com.example.thecocktail.utils
 
 import android.app.AlertDialog
 import android.os.Bundle
