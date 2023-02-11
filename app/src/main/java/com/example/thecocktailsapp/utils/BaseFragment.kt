@@ -1,4 +1,4 @@
-package com.example.thecocktail.utils
+package com.example.thecocktailsapp.utils
 
 import android.app.AlertDialog
 import android.os.Bundle
