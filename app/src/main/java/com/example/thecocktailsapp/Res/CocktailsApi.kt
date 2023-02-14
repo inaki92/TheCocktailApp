@@ -5,41 +5,39 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface CocktailsApi {
+interface CocktailsApi:  {
 
-
-
-    //Get random
-    @GET(COCKTAILS_BY_ALCOHOL_CONTENT)
-    suspend fun getAllCocktail(
-        @Query("a") alcohol: String = "Alcoholic"
-    ): Response<CocktailInfo>
-
-    //Get Non Alcoholic
-    @GET(COCKTAILS_BY_ALCOHOL_CONTENT)
-    suspend fun getAllCocktailNonAlcoholic(
-        @Query("a") Noalcohol: String = "Non_Alcoholic"
-    ): Response<CocktailInfo>
-
-
-    @GET(COCKTAILS_BY_NAME)
-    suspend fun getCocktailByName(
+    @GET(cocktailsByName)
+    suspend fun getCocktailsByName(
         @Query("s") name: String
-    ): Response<CocktailInfo>
+    ):Response<CocktailInfo>
 
 
-    @GET(COCKTAILS_BY_ID)
-    suspend fun getCocktailById(
-        @Query("i") id: String
-    ): Response<CocktailInfo>
+    @GET(cocktailsByAlcohol)
+        suspend fun getCocktailsByAlcohol(
+            @Query("a") name: String
+        ):Response<CocktailInfo>
+
+    @GET(cocktailsByRandom)
+        suspend fun getCocktailsByRandom(
+            @Query("i") name: String
+        ):Response<CocktailInfo>
+
+    @GET(cocktailsByRandomList)
+        suspend fun getCocktailsByRandomList(
+            @Query("i") name: String
+        ):Response<CocktailInfo>
 
 
-    companion object {
+
+
+companion object {
 
         const val BASE_URL = "http://www.thecocktaildb.com/api/json/v1/1/"
-        private const val COCKTAILS_BY_NAME = "search.php"
-        private const val COCKTAILS_BY_ALCOHOL_CONTENT = "filter.php"
-        private const val COCKTAILS_BY_ID = "lookup.php"
+        private const val cocktailsByName = "search.php"
+        private const val cocktailsByAlcohol = "filter.php"
+        private const val cocktailsByRandom = "lookup.php"
+        private const val cocktailsByRandomList = "lookup.php"
 
 
     }
