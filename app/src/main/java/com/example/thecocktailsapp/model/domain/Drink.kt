@@ -3,7 +3,7 @@ package com.example.thecocktailsapp.model.domain
 import com.example.thecocktailsapp.model.CocktailIInfo.CocktailsResponse
 
 
-data class DrinkDomain(
+data class Drink(
     val idDrink: String?,
     val alcoholic: String?,
     val category: String?,
@@ -15,7 +15,7 @@ data class DrinkDomain(
     val measures: List<String?>?
 )
 
-fun CocktailsResponse?.mapToDrinkDomain(): DrinkDomain{
+fun CocktailsResponse?.mapToDrinkDomain(): Drink{
 
     //creating ingredients list
     val ingredientsList: MutableList<String?> =
@@ -64,7 +64,7 @@ fun CocktailsResponse?.mapToDrinkDomain(): DrinkDomain{
             measuresList.remove(it)
     }
 
-    return DrinkDomain(
+    return Drink(
         idDrink = this?.idDrink,
         alcoholic = this?.strAlcoholic,
         category = this?.strCategory,
