@@ -15,7 +15,7 @@ data class Drink(
     val measures: List<String?>?
 )
 
-fun CocktailsResponse?.mapToDrinkDomain(): Drink{
+fun CocktailsResponse?.mapToDrink(): Drink{
 
     //creating ingredients list
     val ingredientsList: MutableList<String?> =
