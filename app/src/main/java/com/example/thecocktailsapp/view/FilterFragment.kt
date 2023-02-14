@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.thecocktailsapp.databinding.FragmentCocktailsBinding
+import com.example.thecocktailsapp.databinding.FragmentCommonViewBinding
 
 class FilterFragment : BaseFragment() {
 
 
     private val binding by lazy {
-        FragmentCocktailsBinding.inflate(layoutInflater)
+        FragmentCommonViewBinding.inflate(layoutInflater)
     }
 
     // todo implement cocktailAdapter
