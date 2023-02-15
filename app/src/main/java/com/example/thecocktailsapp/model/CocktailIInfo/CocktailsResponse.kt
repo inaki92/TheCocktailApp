@@ -1,11 +1,11 @@
-package com.example.thecocktailsapp.model.CocktailsByName
+package com.example.thecocktailsapp.model.CocktailIInfo
 
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Drink(
+data class CocktailsResponse(
     @Json(name = "dateModified")
     val dateModified: String? = null,
     @Json(name = "idDrink")
@@ -33,17 +33,17 @@ data class Drink(
     @Json(name = "strIngredient1")
     val strIngredient1: String? = null,
     @Json(name = "strIngredient10")
-    val strIngredient10: Any? = null,
+    val strIngredient10: String? = null,
     @Json(name = "strIngredient11")
-    val strIngredient11: Any? = null,
+    val strIngredient11: String? = null,
     @Json(name = "strIngredient12")
-    val strIngredient12: Any? = null,
+    val strIngredient12: String? = null,
     @Json(name = "strIngredient13")
-    val strIngredient13: Any? = null,
+    val strIngredient13: String? = null,
     @Json(name = "strIngredient14")
-    val strIngredient14: Any? = null,
+    val strIngredient14: String? = null,
     @Json(name = "strIngredient15")
-    val strIngredient15: Any? = null,
+    val strIngredient15:String? = null,
     @Json(name = "strIngredient2")
     val strIngredient2: String? = null,
     @Json(name = "strIngredient3")
@@ -57,37 +57,37 @@ data class Drink(
     @Json(name = "strIngredient7")
     val strIngredient7: String? = null,
     @Json(name = "strIngredient8")
-    val strIngredient8: Any? = null,
+    val strIngredient8: String? = null,
     @Json(name = "strIngredient9")
-    val strIngredient9: Any? = null,
+    val strIngredient9:String? = null,
     @Json(name = "strInstructions")
     val strInstructions: String? = null,
     @Json(name = "strInstructionsDE")
     val strInstructionsDE: String? = null,
     @Json(name = "strInstructionsES")
-    val strInstructionsES: Any? = null,
+    val strInstructionsES: String? = null,
     @Json(name = "strInstructionsFR")
-    val strInstructionsFR: Any? = null,
+    val strInstructionsFR: String? = null,
     @Json(name = "strInstructionsIT")
     val strInstructionsIT: String? = null,
     @Json(name = "strInstructionsZH-HANS")
-    val strInstructionsZHHANS: Any? = null,
+    val strInstructionsZHHANS: String? = null,
     @Json(name = "strInstructionsZH-HANT")
-    val strInstructionsZHHANT: Any? = null,
+    val strInstructionsZHHANT: String? = null,
     @Json(name = "strMeasure1")
     val strMeasure1: String? = null,
     @Json(name = "strMeasure10")
-    val strMeasure10: Any? = null,
+    val strMeasure10: String? = null,
     @Json(name = "strMeasure11")
-    val strMeasure11: Any? = null,
+    val strMeasure11: String? = null,
     @Json(name = "strMeasure12")
-    val strMeasure12: Any? = null,
+    val strMeasure12: String? = null,
     @Json(name = "strMeasure13")
-    val strMeasure13: Any? = null,
+    val strMeasure13: String? = null,
     @Json(name = "strMeasure14")
-    val strMeasure14: Any? = null,
+    val strMeasure14:String? = null,
     @Json(name = "strMeasure15")
-    val strMeasure15: Any? = null,
+    val strMeasure15: String? = null,
     @Json(name = "strMeasure2")
     val strMeasure2: String? = null,
     @Json(name = "strMeasure3")
@@ -101,11 +101,11 @@ data class Drink(
     @Json(name = "strMeasure7")
     val strMeasure7: String? = null,
     @Json(name = "strMeasure8")
-    val strMeasure8: Any? = null,
+    val strMeasure8: String? = null,
     @Json(name = "strMeasure9")
-    val strMeasure9: Any? = null,
+    val strMeasure9: String? = null,
     @Json(name = "strTags")
     val strTags: String? = null,
     @Json(name = "strVideo")
-    val strVideo: Any? = null
+    val strVideo: String? = null
 )
