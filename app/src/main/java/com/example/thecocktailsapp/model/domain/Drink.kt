@@ -1,10 +1,11 @@
 package com.example.thecocktailsapp.model.domain
 
 import com.example.thecocktailsapp.model.CocktailIInfo.CocktailsResponse
+import java.lang.Math.random
 
 
 data class Drink(
-    val idDrink: String?,
+    val idDrink: String,
     val alcoholic: String?,
     val category: String?,
     val drinkName: String?,
@@ -12,7 +13,8 @@ data class Drink(
     val glass: String?,
     val ingredients: List<String?>?,
     val instructions: String?,
-    val measures: List<String?>?
+    val measures: List<String?>?,
+    val isFavorite: Boolean = false
 )
 
 fun CocktailsResponse?.mapToDrink(): Drink{
@@ -65,15 +67,15 @@ fun CocktailsResponse?.mapToDrink(): Drink{
     }
 
     return Drink(
-        idDrink = this?.idDrink,
-        alcoholic = this?.strAlcoholic,
-        category = this?.strCategory,
-        drinkName = this?.strDrink,
-        drinkThumb = this?.strDrinkThumb+"/preview",
-        glass = this?.strGlass,
-        ingredients = ingredientsList,
-        measures = measuresList,
-        instructions = this?.strInstructions
+        this?.idDrink?:random().toInt().toString(),
+        this?.strAlcoholic,
+        this?.strCategory,
+        this?.strDrink,
+        this?.strDrinkThumb+"/preview",
+        this?.strGlass,
+        ingredientsList,
+        this?.strInstructions,
+        measuresList
     )
 
 }
