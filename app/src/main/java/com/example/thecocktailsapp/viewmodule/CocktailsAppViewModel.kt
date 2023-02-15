@@ -14,7 +14,6 @@ class CocktailsAppViewModel(
 
     // Expose screen UI state
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-    private val cocktails = ""
 
     private val _cocktail : MutableLiveData<UIState<CocktailsResponse>> = MutableLiveData(UIState.LOADING)
     val cocktail : MutableLiveData<UIState<CocktailsResponse>> get() = _cocktail
@@ -23,9 +22,9 @@ class CocktailsAppViewModel(
     // Handle logic
     private fun getCocktails(){
         viewModelScope.launch(ioDispatcher) {
-            cocktailsRepository.getCocktail(cocktails).collect() {
-                Log.d(ContentValues.TAG, "TEST: $cocktails")
+            cocktailsRepository.getCocktail().collect() {
                 _cocktail.postValue(it)
+                Log.d(ContentValues.TAG, "TEST: $_cocktail")
             }
         }
 
