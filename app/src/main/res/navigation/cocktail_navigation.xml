@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/RandomFragment"
+    android:id="@+id/cocktail_navigation">
+
+    <fragment
+        android:id="@+id/FavoriteFragment"
+        android:name="com.example.thecocktailsapp.view.FavoriteFragment"
+        android:label="Favorite Cocktails"
+        tools:layout="@layout/fragment_common_view">
+        <action
+            android:id="@+id/action_FavoriteFragment_to_DetailsFragment"
+            app:destination="@id/DetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/DetailsFragment"
+        android:name="com.example.thecocktailsapp.view.DetailsFragment"
+        android:label="Cocktail Detail"
+        tools:layout="@layout/cocktails_details_fragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/FilterFragment"
+        android:name="com.example.thecocktailsapp.view.FilterFragment"
+        android:label="Filtered Cocktails"
+        tools:layout="@layout/fragment_common_view">
+        <action
+            android:id="@+id/action_FilterFragment_to_DetailsFragment"
+            app:destination="@id/DetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/RandomFragment"
+        android:name="com.example.thecocktailsapp.view.RandomFragment"
+        android:label="Random Cocktails"
+        tools:layout="@layout/fragment_common_view">
+        <action
+            android:id="@+id/action_RandomFragment_to_DetailsFragment"
+            app:destination="@id/DetailsFragment" />
+    </fragment>
+
+</navigation>
