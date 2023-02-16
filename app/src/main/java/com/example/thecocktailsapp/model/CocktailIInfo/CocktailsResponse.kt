@@ -19,7 +19,7 @@ data class CocktailsResponse(
     @Json(name = "strDrink")
     val strDrink: String? = null,
     @Json(name = "strDrinkAlternate")
-    val strDrinkAlternate: Any? = null,
+    val strDrinkAlternate: String? = null,
     @Json(name = "strDrinkThumb")
     val strDrinkThumb: String? = null,
     @Json(name = "strGlass")
@@ -43,7 +43,7 @@ data class CocktailsResponse(
     @Json(name = "strIngredient14")
     val strIngredient14: String? = null,
     @Json(name = "strIngredient15")
-    val strIngredient15:String? = null,
+    val strIngredient15: String? = null,
     @Json(name = "strIngredient2")
     val strIngredient2: String? = null,
     @Json(name = "strIngredient3")
@@ -59,7 +59,7 @@ data class CocktailsResponse(
     @Json(name = "strIngredient8")
     val strIngredient8: String? = null,
     @Json(name = "strIngredient9")
-    val strIngredient9:String? = null,
+    val strIngredient9: String? = null,
     @Json(name = "strInstructions")
     val strInstructions: String? = null,
     @Json(name = "strInstructionsDE")
@@ -85,7 +85,7 @@ data class CocktailsResponse(
     @Json(name = "strMeasure13")
     val strMeasure13: String? = null,
     @Json(name = "strMeasure14")
-    val strMeasure14:String? = null,
+    val strMeasure14: String? = null,
     @Json(name = "strMeasure15")
     val strMeasure15: String? = null,
     @Json(name = "strMeasure2")
