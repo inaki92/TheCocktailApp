@@ -2,8 +2,8 @@ package com.example.thecocktailsapp.Res
 
 import android.util.Log
 import com.example.thecocktailsapp.Rest.CocktailsApi
-import com.example.thecocktailsapp.model.CocktailIInfo.CocktailInfo
-import com.example.thecocktailsapp.model.CocktailIInfo.CocktailsResponse
+import com.example.thecocktailsapp.model.domain.Drink
+import com.example.thecocktailsapp.model.domain.mapToDrink
 import com.example.thecocktailsapp.utils.FailureResponse
 import com.example.thecocktailsapp.utils.NullCocktailResponse
 import com.example.thecocktailsapp.utils.UIState
@@ -15,13 +15,13 @@ private const val TAG = "CocktailsRepository"
 
 interface CocktailsRepository{
                 fun getCocktailsByName(name: String):
-                        Flow<UIState<CocktailInfo>>
+                        Flow<UIState<List<Drink>>>
 
                 fun getCocktailsByAlcohol(alcohol: String):
-                        Flow<UIState<CocktailInfo>>
+                        Flow<UIState<List<Drink>>>
 
                 fun getCocktailsByID(id: String):
-                        Flow<UIState<CocktailInfo>>
+                        Flow<UIState<Drink>>
 
 
 }
@@ -31,13 +31,13 @@ class CocktailRepositoryImpl @Inject constructor(
             private val cocktailsApi: CocktailsApi
         ): CocktailsRepository{
 
-        override fun getCocktailsByAlcohol(alcohol: String): Flow<UIState<CocktailInfo>> = flow{
+        override fun getCocktailsByAlcohol(alcohol: String): Flow<UIState<List<Drink>>> = flow{
             emit(UIState.LOADING)
             try {
                 val response = cocktailsApi.getCocktailsByAlcoholic(alcohol)
                 if(response.isSuccessful){
-                    response.body()?.let {
-                        emit(UIState.SUCCESS(it))
+                    response.body()?.let{
+                        emit(UIState.SUCCESS(it.drinks.mapToDrink()))
                     }?: throw NullCocktailResponse() //check if response was null
                 }else throw FailureResponse(response.errorBody()?.string())
             }catch (e: Exception){
@@ -48,13 +48,13 @@ class CocktailRepositoryImpl @Inject constructor(
 
 
 
-            override fun getCocktailsByName(name: String): Flow<UIState<CocktailInfo>> = flow{
+            override fun getCocktailsByName(name: String): Flow<UIState<List<Drink>>> = flow{
                 emit(UIState.LOADING)
                 try {
                     val response = cocktailsApi.getCocktailsByName(name)
                     if(response.isSuccessful){
                         response.body()?.let {
-                            emit(UIState.SUCCESS(it))
+                            emit(UIState.SUCCESS(it.drinks.mapToDrink()))
                         }?: throw NullCocktailResponse() //check if response was null
                     }else throw FailureResponse(response.errorBody()?.string())
                 }catch (e: Exception){
@@ -64,13 +64,13 @@ class CocktailRepositoryImpl @Inject constructor(
             }
 
 
-            override fun getCocktailsByID(id: String): Flow<UIState<CocktailInfo>> = flow{
+            override fun getCocktailsByID(id: String): Flow<UIState<Drink>> = flow{
                 emit(UIState.LOADING)
                 try {
                     val response = cocktailsApi.getCocktailsByID(id)
                     if(response.isSuccessful){
                         response.body()?.let {
-                            emit(UIState.SUCCESS(it))
+                            emit(UIState.SUCCESS(it.drinks.mapToDrink()[0]))
                         }?: throw NullCocktailResponse() //check if response was null
                     }else throw FailureResponse(response.errorBody()?.string())
                 }catch (e: Exception){
