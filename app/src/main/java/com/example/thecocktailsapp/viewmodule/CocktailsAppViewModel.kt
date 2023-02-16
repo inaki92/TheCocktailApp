@@ -9,11 +9,12 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 class CocktailsAppViewModel(
-    private val cocktailsRepository: CocktailsRepository
+    private val cocktailsRepository: CocktailsRepository,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): ViewModel() {
 
     // Expose screen UI state
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+
 
     private val _cocktail : MutableLiveData<UIState<CocktailsResponse>> = MutableLiveData(UIState.LOADING)
     val cocktail : MutableLiveData<UIState<CocktailsResponse>> get() = _cocktail
