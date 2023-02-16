@@ -12,7 +12,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CocktailsAppViewModel(
+class CocktailsViewModel(
     private val cocktailsRepository: CocktailsRepository,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): ViewModel() {
@@ -26,7 +26,7 @@ class CocktailsAppViewModel(
         getCocktails()
     }
 
-    private fun getCocktails(){
+    fun getCocktails(){
         viewModelScope.launch(ioDispatcher) {
             cocktailsRepository.getCocktails().collect() {
                 _cocktail.postValue(it)
