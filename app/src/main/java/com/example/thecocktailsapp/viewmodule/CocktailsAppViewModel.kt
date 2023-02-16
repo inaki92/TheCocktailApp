@@ -4,9 +4,11 @@ import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.thecocktailsapp.model.CocktailIInfo.CocktailsResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class CocktailsAppViewModel(
     private val cocktailsRepository: CocktailsRepository,
@@ -21,7 +23,7 @@ class CocktailsAppViewModel(
 
 
     // Handle logic
-    private fun getCocktails(){
+    fun getCocktails(){
         viewModelScope.launch(ioDispatcher) {
             cocktailsRepository.getCocktail().collect() {
                 _cocktail.postValue(it)
