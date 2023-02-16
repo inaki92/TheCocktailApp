@@ -3,17 +3,16 @@ package com.example.thecocktailsapp.model.domain
 import com.example.thecocktailsapp.model.CocktailIInfo.CocktailsResponse
 import java.lang.Math.random
 
-
 data class Drink(
     val idDrink: String,
-    val alcoholic: String?,
-    val category: String?,
-    val drinkName: String?,
-    val drinkThumb: String?,
-    val glass: String?,
-    val ingredients: List<String?>?,
-    val instructions: String?,
-    val measures: List<String?>?,
+    val alcoholic: String,
+    val category: String,
+    val drinkName: String,
+    val drinkThumb: String,
+    val glass: String,
+    val ingredients: List<String>,
+    val instructions: String,
+    val measures: List<String>,
     val isFavorite: Boolean = false
 )
 
@@ -38,10 +37,6 @@ fun CocktailsResponse?.mapToDrink(): Drink{
             this?.strIngredient14,
             this?.strIngredient15
         )
-    ingredientsList.forEach{
-        if(it == null)
-            ingredientsList.remove(it)
-    }
 
     val measuresList: MutableList<String?> =
         mutableListOf(
@@ -61,21 +56,17 @@ fun CocktailsResponse?.mapToDrink(): Drink{
             this?.strMeasure14,
             this?.strMeasure15
         )
-    measuresList.forEach{
-        if(it == null)
-            measuresList.remove(it)
-    }
 
     return Drink(
         this?.idDrink?:random().toInt().toString(),
-        this?.strAlcoholic,
-        this?.strCategory,
-        this?.strDrink,
+        this?.strAlcoholic?:"",
+        this?.strCategory?:"",
+        this?.strDrink?:"",
         this?.strDrinkThumb+"/preview",
-        this?.strGlass,
-        ingredientsList,
-        this?.strInstructions,
-        measuresList
+        this?.strGlass?:"",
+        ingredientsList.filterNotNull(),
+        this?.strInstructions?:"",
+        measuresList.filterNotNull()
     )
 
 }
