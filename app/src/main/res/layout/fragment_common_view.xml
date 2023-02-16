@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
 
-  <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/cocktails_rv"
+  <androidx.appcompat.widget.SearchView
+      android:id="@+id/sv_search_cocktail"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:queryHint="Search a Cocktail"/>
+
+  <include
+      layout="@layout/common_recycler_view"
+      android:id="@+id/rv_common_view"
       android:layout_margin="10dp"
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="0dp"
+      app:layout_constraintTop_toBottomOf="@id/sv_search_cocktail"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"/>
 
-  </androidx.recyclerview.widget.RecyclerView>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
