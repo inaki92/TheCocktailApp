@@ -37,6 +37,7 @@ fun CocktailsResponse?.mapToDrink(): Drink {
             this?.strIngredient15
         )
 
+    //creating measures list
     val measuresList: MutableList<String?> =
         mutableListOf(
             this?.strMeasure1,
