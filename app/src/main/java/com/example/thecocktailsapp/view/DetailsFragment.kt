@@ -2,12 +2,12 @@
 package com.example.thecocktailsapp.view
 
 
-import BaseFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.thecocktailsapp.databinding.CocktailsDetailsFragmentBinding
+import com.example.thecocktailsapp.utils.BaseFragment
 
 class DetailsFragment : BaseFragment() {
 
