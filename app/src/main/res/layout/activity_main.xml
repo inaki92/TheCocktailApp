@@ -7,14 +7,6 @@
     tools:context=".MainActivity"
     android:layout_margin="10dp">
 
-    <androidx.appcompat.widget.SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:queryHint="Search a Cocktail"/>
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frag_container"
         android:layout_width="match_parent"
