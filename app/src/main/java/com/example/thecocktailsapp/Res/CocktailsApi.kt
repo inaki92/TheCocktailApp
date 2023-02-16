@@ -5,27 +5,22 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface CocktailsApi:  {
-
-    @GET(cocktailsByName)
-    suspend fun getCocktailsByName(
-        @Query("s") name: String
-    ):Response<CocktailInfo>
+interface CocktailsApi {
 
 
-    @GET(cocktailsByAlcohol)
-        suspend fun getCocktailsByAlcohol(
-            @Query("a") name: String
+    @GET(COCKTAILS_BY_SEARCH)
+        suspend fun getCocktailsByAlcoholic(
+            @Query("a") alcohol: String
         ):Response<CocktailInfo>
 
-    @GET(cocktailsByRandom)
-        suspend fun getCocktailsByRandom(
-            @Query("i") name: String
+    @GET(COCKTAILS_BY_ID)
+        suspend fun getCocktailsByID(
+            @Query("i") id: String
         ):Response<CocktailInfo>
 
-    @GET(cocktailsByRandomList)
-        suspend fun getCocktailsByRandomList(
-            @Query("i") name: String
+    @GET(COCKTAILS_BY_NAME)
+        suspend fun getCocktailsByName(
+            @Query("s") name: String
         ):Response<CocktailInfo>
 
 
@@ -34,10 +29,10 @@ interface CocktailsApi:  {
 companion object {
 
         const val BASE_URL = "http://www.thecocktaildb.com/api/json/v1/1/"
-        private const val cocktailsByName = "search.php"
-        private const val cocktailsByAlcohol = "filter.php"
-        private const val cocktailsByRandom = "lookup.php"
-        private const val cocktailsByRandomList = "lookup.php"
+        private const val COCKTAILS_BY_NAME= "search.php"
+        private const val COCKTAILS_BY_ID = "lookup.php"
+        private const val COCKTAILS_BY_SEARCH = "filter.php"
+
 
 
     }
