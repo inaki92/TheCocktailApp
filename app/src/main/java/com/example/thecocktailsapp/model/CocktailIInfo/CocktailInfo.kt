@@ -1,11 +1,9 @@
 package com.example.thecocktailsapp.model.CocktailIInfo
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-    @JsonClass(generateAdapter = true)
-    data class CocktailInfo
-    (@Json(name = "drinks")
-    val drinks: List<CocktailsResponse>? = listOf()
+data class CocktailInfo(
+    @SerializedName("drinks")
+    val drinks: List<CocktailResponse>? = null
 )
