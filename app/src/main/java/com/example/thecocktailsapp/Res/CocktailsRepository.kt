@@ -2,6 +2,7 @@ package com.example.thecocktailsapp.Res
 
 import android.util.Log
 import com.example.thecocktailsapp.Rest.CocktailsApi
+import com.example.thecocktailsapp.database.LocalRepository
 import com.example.thecocktailsapp.model.domain.Drink
 import com.example.thecocktailsapp.model.domain.mapToDrink
 import com.example.thecocktailsapp.utils.FailureResponse
@@ -26,8 +27,9 @@ interface CocktailsRepository{
 
 
 class CocktailRepositoryImpl @Inject constructor(
-            private val cocktailsApi: CocktailsApi
-        ): CocktailsRepository{
+            private val cocktailsApi: CocktailsApi,
+            private val localRepository: LocalRepository
+            ): CocktailsRepository{
 
         override fun getCocktailsByAlcohol(alcohol: String): Flow<UIState<List<Drink>>> = flow{
             emit(UIState.LOADING)
@@ -35,7 +37,7 @@ class CocktailRepositoryImpl @Inject constructor(
                 val response = cocktailsApi.getCocktailsByAlcoholic(alcohol)
                 if(response.isSuccessful){
                     response.body()?.let{
-                        emit(UIState.SUCCESS(it.drinks.mapToDrink()))
+                        emit(UIState.SUCCESS(it.drinks.mapToDrink(false)))
                     }?: throw NullCocktailResponse() //check if response was null
                 }else throw FailureResponse(response.errorBody()?.string())
             }catch (e: Exception){
@@ -52,7 +54,7 @@ class CocktailRepositoryImpl @Inject constructor(
                     val response = cocktailsApi.getCocktailsByName(name)
                     if(response.isSuccessful){
                         response.body()?.let {
-                            emit(UIState.SUCCESS(it.drinks.mapToDrink()))
+                            emit(UIState.SUCCESS(it.drinks.mapToDrink(false)))
                         }?: throw NullCocktailResponse() //check if response was null
                     }else throw FailureResponse(response.errorBody()?.string())
                 }catch (e: Exception){
@@ -68,7 +70,8 @@ class CocktailRepositoryImpl @Inject constructor(
                     val response = cocktailsApi.getCocktailsByID(id)
                     if(response.isSuccessful){
                         response.body()?.let {
-                            emit(UIState.SUCCESS(it.drinks.mapToDrink()))
+                            emit(
+                                UIState.SUCCESS(it.drinks.mapToDrink(localRepository.getCocktailById(id)!=null)))
                         }?: throw NullCocktailResponse() //check if response was null
                     }else throw FailureResponse(response.errorBody()?.string())
                 }catch (e: Exception){

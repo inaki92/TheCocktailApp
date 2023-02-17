@@ -1,6 +1,8 @@
 package com.example.thecocktailsapp.model.domain
 
+import com.example.thecocktailsapp.database.DrinkTable
 import com.example.thecocktailsapp.model.CocktailIInfo.CocktailResponse
+import com.google.gson.Gson
 
 data class Drink(
     val idDrink: String = "",
@@ -15,7 +17,7 @@ data class Drink(
     var isFavorite: Boolean = false
 )
 
-fun List<CocktailResponse>?.mapToDrink(): List<Drink> {
+fun List<CocktailResponse>?.mapToDrink(isInFavorite: Boolean): List<Drink> {
     return this?.map {
         //creating ingredients list
         val ingredientsList: MutableList<String?> =
@@ -67,8 +69,25 @@ fun List<CocktailResponse>?.mapToDrink(): List<Drink> {
             ingredientsList.filterNotNull(),
             it.strInstructions ?: "",
             measuresList.filterNotNull(),
-            false
+            isInFavorite
         )
     }?:return emptyList()
+}
 
+fun List<DrinkTable>.mapToDrinkFromTable(): List<Drink>{
+    val gson = Gson()
+    return this.map {
+        Drink(
+            it.idDrink,
+            it.alcoholic,
+            it.category,
+            it.drinkName,
+            it.drinkThumb,
+            it.glass,
+            gson.fromJson<List<String>>(it.ingredients,List::class.java),
+            it.instructions,
+            gson.fromJson<List<String>>(it.measures,List::class.java),
+            it.isFavorite
+        )
+    }
 }

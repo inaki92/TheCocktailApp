@@ -43,6 +43,8 @@ class MyCocktailsAppViewModel @Inject constructor(
         MutableLiveData(UIState.LOADING)
     val favoriteCocktails: LiveData<UIState<List<DrinkTable>>> get() = _favoriteCocktails
 
+    private var inDatabase: Boolean = false
+
     init {
         getCocktailsByAlcohol()
         getCocktailsByName()
@@ -82,7 +84,6 @@ class MyCocktailsAppViewModel @Inject constructor(
             }
         }
     }
-
     fun updateFavoriteCocktail(drink: Drink){
         drink.isFavorite = !drink.isFavorite
         viewModelScope.launch(ioDispatcher) {

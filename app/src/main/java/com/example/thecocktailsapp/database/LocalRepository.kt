@@ -10,6 +10,8 @@ interface LocalRepository {
     suspend fun insertFavoriteCocktail(drink: Drink)
     suspend fun getFavoriteCocktails(): UIState<List<DrinkTable>>
     suspend fun deleteFavoriteCocktail(drink: Drink)
+    suspend fun getCocktailById(drinkId: String): DrinkTable?
+
 }
 class LocalRepositoryImpl @Inject constructor(
     private val cocktailsDAO: CocktailsDAO
@@ -38,6 +40,15 @@ class LocalRepositoryImpl @Inject constructor(
             cocktailsDAO.deleteCocktail(drinkTable)
         }catch (e: Exception){
             Log.e(TAG, "deleteFavoriteCocktail: ${e.localizedMessage}", e)
+        }
+    }
+
+    override suspend fun getCocktailById(drinkId: String): DrinkTable? {
+        return try {
+            cocktailsDAO.getCocktail(drinkId)
+        }catch (e: java.lang.Exception){
+            Log.e(TAG, "getCocktailById: ${e.localizedMessage}", e)
+            null
         }
     }
 

@@ -15,4 +15,7 @@ interface CocktailsDAO {
     @Delete
     suspend fun deleteCocktail(vararg drink: DrinkTable)
 
+    @Query("SELECT * FROM drinks WHERE idDrink = :id")
+    suspend fun getCocktail(id: String): DrinkTable
+
 }

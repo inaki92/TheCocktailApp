@@ -79,6 +79,11 @@ class DetailsFragment : BaseFragment() {
                         .into(binding.ivCocktailPicture)
 
                     cocktailAdapter.updateItems(listVT)
+                    updateStarButtonImage(currntDrink)
+                    binding.startButton.setOnClickListener {
+                        cocktailViewModel.updateFavoriteCocktail(currntDrink)
+                        updateStarButtonImage(currntDrink)
+                    }
 
                 }
                 is UIState.ERROR -> {
@@ -96,4 +101,13 @@ class DetailsFragment : BaseFragment() {
 
         return binding.root
     }
+
+    private fun updateStarButtonImage(drink: Drink){
+        if(drink.isFavorite){
+            binding.startButton.setImageResource(R.drawable.ic_star_filled)
+        } else{
+            binding.startButton.setImageResource(R.drawable.ic_star_empty)
+        }
+    }
+
 }
