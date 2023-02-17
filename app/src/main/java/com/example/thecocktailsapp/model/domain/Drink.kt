@@ -12,7 +12,7 @@ data class Drink(
     val ingredients: List<String> = listOf(),
     val instructions: String = "",
     val measures: List<String> = listOf(),
-    val isFavorite: Boolean = false
+    var isFavorite: Boolean = false
 )
 
 fun List<CocktailResponse>?.mapToDrink(): List<Drink> {
@@ -66,7 +66,8 @@ fun List<CocktailResponse>?.mapToDrink(): List<Drink> {
             it.strGlass ?: "",
             ingredientsList.filterNotNull(),
             it.strInstructions ?: "",
-            measuresList.filterNotNull()
+            measuresList.filterNotNull(),
+            false
         )
     }?:return emptyList()
 

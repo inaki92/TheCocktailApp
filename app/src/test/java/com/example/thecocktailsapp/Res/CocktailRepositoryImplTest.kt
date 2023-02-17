@@ -2,6 +2,7 @@ package com.example.thecocktailsapp.Res
 
 import com.example.thecocktailsapp.Rest.CocktailsApi
 import com.example.thecocktailsapp.model.CocktailIInfo.CocktailInfo
+import com.example.thecocktailsapp.model.domain.Drink
 import com.example.thecocktailsapp.utils.UIState
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
@@ -22,7 +23,6 @@ internal class MusicRepositoryImplTest {
 
     private lateinit var testObject: CocktailsRepository
     private val mockServiceApi = mockk<CocktailsApi>(relaxed = true)
-
     private val testDispatcher = UnconfinedTestDispatcher()
     private val testScope = TestScope(testDispatcher)
 
@@ -43,23 +43,25 @@ internal class MusicRepositoryImplTest {
     }
 
     @Test
-    fun `get all cocktails when server is a success response returns cocktailsInf`() {
+    fun `get all cocktails when server is a success response returns cocktailsInfo`() {
         //ASSIGN
-        coEvery { mockServiceApi.getAllCocktail() } returns mockk {
+        coEvery { mockServiceApi.getCocktailsByAlcoholic(alcohol = mockk()) } returns mockk {
             every { isSuccessful } returns true
             every { body() } returns CocktailInfo(drinks = listOf(mockk()))
 
 
         //ACTION
-        var state: UIState = UIState.LOADING
+        var state: UIState<List<Drink>> = UIState.LOADING
         val job = testScope.launch {
-            testObject.getCocktails().collect {
+            testObject.getCocktailsByAlcohol(alcohol = mockk()).collect {
                 state = it
             }
         }
 
         //ASSESS
         assert(state is UIState.SUCCESS)
+
+            job.cancel()
 
     }
 }

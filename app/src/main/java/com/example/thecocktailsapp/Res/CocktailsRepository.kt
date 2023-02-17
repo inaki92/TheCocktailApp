@@ -21,9 +21,7 @@ interface CocktailsRepository{
                         Flow<UIState<List<Drink>>>
 
                 fun getCocktailsByID(id: String):
-                        Flow<UIState<Drink>>
-
-
+                        Flow<UIState<List<Drink>>>
 }
 
 
@@ -64,13 +62,13 @@ class CocktailRepositoryImpl @Inject constructor(
             }
 
 
-            override fun getCocktailsByID(id: String): Flow<UIState<Drink>> = flow{
+            override fun getCocktailsByID(id: String): Flow<UIState<List<Drink>>> = flow{
                 emit(UIState.LOADING)
                 try {
                     val response = cocktailsApi.getCocktailsByID(id)
                     if(response.isSuccessful){
                         response.body()?.let {
-                            emit(UIState.SUCCESS(it.drinks.mapToDrink()[0]))
+                            emit(UIState.SUCCESS(it.drinks.mapToDrink()))
                         }?: throw NullCocktailResponse() //check if response was null
                     }else throw FailureResponse(response.errorBody()?.string())
                 }catch (e: Exception){
