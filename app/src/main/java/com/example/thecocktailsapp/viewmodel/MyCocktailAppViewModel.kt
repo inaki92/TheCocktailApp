@@ -44,8 +44,8 @@ class MyCocktailsAppViewModel @Inject constructor(
     fun getCocktailsByAlcohol(alcohol: String? = null) {
         alcohol?.let {
             viewModelScope.launch(ioDispatcher) {
-                cocktailsRepository.getCocktailsByName(alcohol).collect {
-                    _cocktailById.postValue(it)
+                cocktailsRepository.getCocktailsByAlcohol(alcohol).collect {
+                    _cocktailByAlcohol.postValue(it)
                     Log.d(ContentValues.TAG, "TEST: $_cocktailById")
                 }
             }
@@ -56,7 +56,7 @@ class MyCocktailsAppViewModel @Inject constructor(
         name?.let {
             viewModelScope.launch(ioDispatcher) {
                 cocktailsRepository.getCocktailsByName(name).collect {
-                    _cocktailById.postValue(it)
+                    _cocktailByName.postValue(it)
                     Log.d(ContentValues.TAG, "TEST: $_cocktailById")
                 }
             }
@@ -66,7 +66,7 @@ class MyCocktailsAppViewModel @Inject constructor(
     fun getCocktailsById(id: String? = null) {
         id?.let {
             viewModelScope.launch(ioDispatcher) {
-                cocktailsRepository.getCocktailsByName(id).collect {
+                cocktailsRepository.getCocktailsByID(id).collect {
                     _cocktailById.postValue(it)
                     Log.d(ContentValues.TAG, "TEST: $_cocktailById")
                 }

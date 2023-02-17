@@ -12,10 +12,11 @@ import com.example.thecocktailsapp.utils.ViewType
 import kotlinx.coroutines.NonDisposableHandle.parent
 
 private const val TAG = "CocktailAdapter"
+
 class CocktailAdapter(
     private val itemSet: MutableList<ViewType>,
-    private val onItemClick: (String) -> Unit,
-    private val onStarClick: (String) -> Unit
+    private val onItemClick: (Drink) -> Unit,
+    private val onStarClick: (Drink) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun updateItems(newItems: List<ViewType>) {
@@ -28,7 +29,7 @@ class CocktailAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if(viewType == 0) {
+        return if (viewType == 0) {
             CocktailViewHolder(
                 DrinkViewHolderBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -42,21 +43,29 @@ class CocktailAdapter(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
-                    )
                 )
+            )
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when(itemSet[position]) {
+        return when (itemSet[position]) {
             is ViewType.DRINK -> 0
             is ViewType.INGREDIENT -> 1
         }
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(val item = itemSet[position]) {
-            is ViewType.DRINK -> (holder as CocktailViewHolder).bind( item.drinkList, onItemClick, onStarClick)
-            is ViewType.INGREDIENT -> (holder as IngredientsViewHolder).bind( item.ingredientsList, item.mesurementList)
+        when (val item = itemSet[position]) {
+            is ViewType.DRINK -> (holder as CocktailViewHolder).bind(
+                item.drinkList,
+                onItemClick,
+                onStarClick
+            )
+            is ViewType.INGREDIENT -> (holder as IngredientsViewHolder).bind(
+                item.ingredientsList,
+                item.mesurementList
+            )
         }
 
     }
@@ -68,7 +77,7 @@ class CocktailViewHolder(
     private val binding: DrinkViewHolderBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: Drink, onItemClick: (String) -> Unit, onStarClick: (String) -> Unit) {
+    fun bind(item: Drink, onItemClick: (Drink) -> Unit, onStarClick: (Drink) -> Unit) {
         Glide
             .with(binding.root)
             .load(item.drinkThumb)
@@ -78,14 +87,29 @@ class CocktailViewHolder(
             .into(binding.ivCocktailPicture)
 
         binding.tvDrinkName.text = item.drinkName ?: "NO NAME PROVIDED"
-        itemView.setOnClickListener { item.let { onItemClick} }
-        binding.ibFavoriteCocktail.setOnClickListener { item.let { onStarClick} }
+        itemView.setOnClickListener { item.let(onItemClick) }
+        binding.ibFavoriteCocktail.setOnClickListener { item.let(onStarClick) }
+
+        if (item.isFavorite) {
+            binding.ibFavoriteCocktail.setOnClickListener {
+                binding.ibFavoriteCocktail.setImageResource(
+                    R.drawable.ic_star_empty
+                )
+            }
+
+        } else {
+            binding.ibFavoriteCocktail.setOnClickListener {
+                binding.ibFavoriteCocktail.setImageResource(
+                    R.drawable.ic_star_filled
+                )
+            }
+        }
     }
 }
 
 class IngredientsViewHolder(
     private val binding: IngredientViewHolderBinding
-): RecyclerView.ViewHolder(binding.root) {
+) : RecyclerView.ViewHolder(binding.root) {
     fun bind(ingredient: String, measurement: String) {
         binding.tvIngredient.text = ingredient
         binding.tvMeasure.text = measurement
