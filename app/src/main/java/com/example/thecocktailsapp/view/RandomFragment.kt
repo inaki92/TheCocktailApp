@@ -33,7 +33,6 @@ class RandomFragment : BaseFragment(), SearchView.OnQueryTextListener {
         CocktailAdapter{ item ->
                 //Item click
                 cocktailViewModel.id = item.idDrink
-                Toast.makeText(requireContext(), "Hola", Toast.LENGTH_LONG).show()
                 findNavController().navigate(R.id.action_RandomFragment_to_DetailsFragment)
         }
     }
