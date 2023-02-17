@@ -5,7 +5,7 @@
     <string name="ib_content_description_star_button">Star button</string>
     <string name="tv_text_measure">measure</string>
     <string name="tv_text_ingredient">ingredient</string>
-    <string name="tv_text_bullet">•</string>
+    <string name="tv_text_bullet">--</string>
     <string name="tv_text_ingredients">Ingredients</string>
     <string name="tv_text_instructions">Instructions</string>
     <string name="mi_title_home">Home</string>

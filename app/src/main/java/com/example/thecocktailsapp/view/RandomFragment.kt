@@ -72,7 +72,7 @@ class RandomFragment : BaseFragment(), SearchView.OnQueryTextListener {
         cocktailViewModel.cocktailByName.observe(viewLifecycleOwner) { state ->
             val listVT: MutableList<ViewType> = mutableListOf()
 
-            when (state) {
+            when(state) {
                 is UIState.LOADING -> {
                 }
                 is UIState.SUCCESS<List<Drink>> -> {
@@ -100,7 +100,7 @@ class RandomFragment : BaseFragment(), SearchView.OnQueryTextListener {
 
             Log.d(TAG, "getCocktailsRandom: Before when")
 
-            when (state) {
+            when(state) {
                 is UIState.LOADING -> {
                     Log.d(TAG, "getCocktailsRandom: Loading")
                 }
