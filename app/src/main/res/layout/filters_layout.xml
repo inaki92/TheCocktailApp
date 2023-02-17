@@ -14,11 +14,11 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
     <TextView
         android:id="@+id/tv_categories"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center"
         android:text="@string/tv_text_category"
         android:layout_margin="15dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,16 +27,17 @@
     <Spinner
         android:id="@+id/sp_categories"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         app:layout_constraintStart_toEndOf="@id/tv_categories"
-        app:layout_constraintTop_toBottomOf="@id/tv_filter_title"
-        android:layout_margin="10dp"
-        />
+        app:layout_constraintTop_toTopOf="@id/tv_categories"
+        android:layout_marginStart="15dp"
+        android:contentDescription="@string/tv_text_category"/>
 
     <TextView
         android:id="@+id/tv_glasses"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center"
         android:text="@string/tv_text_glass"
         android:layout_margin="15dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,46 +46,61 @@
     <Spinner
         android:id="@+id/sp_glasses"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         app:layout_constraintStart_toEndOf="@id/tv_glasses"
-        app:layout_constraintTop_toBottomOf="@id/sp_categories"
-        android:layout_margin="10dp"
-        />
+        app:layout_constraintTop_toTopOf="@id/tv_glasses"
+        android:layout_marginStart="15dp"
+        android:contentDescription="@string/tv_text_glass"/>
 
     <TextView
         android:id="@+id/tv_ingredients"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center"
         android:text="@string/tv_text_ingredients"
         android:layout_margin="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_glasses"/>
+        app:layout_constraintEnd_toStartOf="@id/sp_ingredients"
+        app:layout_constraintTop_toBottomOf="@id/tv_filter_title"/>
 
     <Spinner
         android:id="@+id/sp_ingredients"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/tv_ingredients"
-        app:layout_constraintTop_toBottomOf="@id/sp_glasses"
-        android:layout_margin="10dp"
-        />
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_ingredients"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:contentDescription="@string/tv_text_ingredients"/>
 
     <TextView
         android:id="@+id/tv_alcoholic"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center"
         android:text="@string/tv_text_alcoholic"
         android:layout_margin="15dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sp_alcoholic"
         app:layout_constraintTop_toBottomOf="@id/tv_ingredients"/>
 
     <Spinner
         android:id="@+id/sp_alcoholic"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/tv_alcoholic"
-        app:layout_constraintTop_toBottomOf="@id/sp_ingredients"
-        android:layout_margin="10dp"
-        />
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_alcoholic"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:contentDescription="@string/tv_text_alcoholic"/>
+
+    <include
+        layout="@layout/common_recycler_view"
+        android:id="@+id/rv_common_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_alcoholic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="5dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
