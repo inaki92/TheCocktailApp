@@ -66,6 +66,9 @@ dependencies {
     // LiveData
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
 
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+
     // mockk
     testImplementation "io.mockk:mockk:1.13.4"
 
