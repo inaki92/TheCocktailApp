@@ -15,57 +15,59 @@ data class Drink(
     val isFavorite: Boolean = false
 )
 
-fun CocktailsResponse?.mapToDrink(): Drink {
+fun List<CocktailsResponse>?.mapToDrink(): List<Drink> {
+    return this?.map {
+        //creating ingredients list
+        val ingredientsList: MutableList<String?> =
+            mutableListOf(
+                it?.strIngredient1,
+                it?.strIngredient2,
+                it?.strIngredient3,
+                it?.strIngredient4,
+                it?.strIngredient5,
+                it?.strIngredient6,
+                it?.strIngredient7,
+                it?.strIngredient8,
+                it?.strIngredient9,
+                it?.strIngredient10,
+                it?.strIngredient11,
+                it?.strIngredient12,
+                it?.strIngredient13,
+                it?.strIngredient14,
+                it?.strIngredient15
+            )
 
-    //creating ingredients list
-    val ingredientsList: MutableList<String?> =
-        mutableListOf(
-            this?.strIngredient1,
-            this?.strIngredient2,
-            this?.strIngredient3,
-            this?.strIngredient4,
-            this?.strIngredient5,
-            this?.strIngredient6,
-            this?.strIngredient7,
-            this?.strIngredient8,
-            this?.strIngredient9,
-            this?.strIngredient10,
-            this?.strIngredient11,
-            this?.strIngredient12,
-            this?.strIngredient13,
-            this?.strIngredient14,
-            this?.strIngredient15
+        //creating measures list
+        val measuresList: MutableList<String?> =
+            mutableListOf(
+                it?.strMeasure1,
+                it?.strMeasure2,
+                it?.strMeasure3,
+                it?.strMeasure4,
+                it?.strMeasure5,
+                it?.strMeasure6,
+                it?.strMeasure7,
+                it?.strMeasure8,
+                it?.strMeasure9,
+                it?.strMeasure10,
+                it?.strMeasure11,
+                it?.strMeasure12,
+                it?.strMeasure13,
+                it?.strMeasure14,
+                it?.strMeasure15
+            )
+
+        Drink(
+            it?.idDrink ?: Math.random().toInt().toString(),
+            it?.strAlcoholic ?: "",
+            it?.strCategory ?: "",
+            it?.strDrink ?: "",
+            it?.strDrinkThumb + "/preview",
+            it?.strGlass ?: "",
+            ingredientsList.filterNotNull(),
+            it?.strInstructions ?: "",
+            measuresList.filterNotNull()
         )
+    }?:return emptyList<Drink>()
 
-    //creating measures list
-    val measuresList: MutableList<String?> =
-        mutableListOf(
-            this?.strMeasure1,
-            this?.strMeasure2,
-            this?.strMeasure3,
-            this?.strMeasure4,
-            this?.strMeasure5,
-            this?.strMeasure6,
-            this?.strMeasure7,
-            this?.strMeasure8,
-            this?.strMeasure9,
-            this?.strMeasure10,
-            this?.strMeasure11,
-            this?.strMeasure12,
-            this?.strMeasure13,
-            this?.strMeasure14,
-            this?.strMeasure15
-        )
-
-    return Drink(
-        this?.idDrink ?: Math.random().toInt().toString(),
-        this?.strAlcoholic ?: "",
-        this?.strCategory ?: "",
-        this?.strDrink ?: "",
-        this?.strDrinkThumb + "/preview",
-        this?.strGlass ?: "",
-        ingredientsList.filterNotNull(),
-        this?.strInstructions ?: "",
-        measuresList.filterNotNull()
-    )
 }
