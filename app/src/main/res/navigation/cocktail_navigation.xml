@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/menu_filter"
         android:name="com.example.thecocktailsapp.view.FilterFragment"
-        android:label="Filtered Cocktails"
+        android:label="Non Alcoholic Cocktails"
         tools:layout="@layout/fragment_common_view">
         <action
             android:id="@+id/action_FilterFragment_to_DetailsFragment"
