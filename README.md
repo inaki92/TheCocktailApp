@@ -1,7 +1,7 @@
 # TheCocktailApp
 
 This app is created as a solution for the social drinker.
-The Cocktail app puts together a database of coktails, along with specific instructions to prepare them, so that the average person is able to enjoy each and everyone of them.
+The Cocktail app puts together a database of cocktails, along with specific instructions to prepare them, so that the average person is able to enjoy each and everyone of them.
 
 The main functionalities of the app include:
 - A list of random alcoholic cocktails
