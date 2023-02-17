@@ -22,8 +22,6 @@ interface CocktailsRepository{
 
                 fun getCocktailsByID(id: String):
                         Flow<UIState<Drink>>
-
-
 }
 
 

@@ -8,11 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.thecocktailsapp.Res.CocktailsRepository
 import com.example.thecocktailsapp.model.domain.Drink
 import com.example.thecocktailsapp.utils.UIState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MyCocktailsAppViewModel(
+@HiltViewModel
+class MyCocktailsAppViewModel @Inject constructor(
     private val cocktailsRepository: CocktailsRepository,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
