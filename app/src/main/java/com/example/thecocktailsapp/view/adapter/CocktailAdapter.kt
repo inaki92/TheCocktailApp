@@ -14,9 +14,8 @@ import kotlinx.coroutines.NonDisposableHandle.parent
 private const val TAG = "CocktailAdapter"
 
 class CocktailAdapter(
-    private val itemSet: MutableList<ViewType>,
-    private val onItemClick: (Drink) -> Unit,
-    private val onStarClick: (Drink) -> Unit
+    private val itemSet: MutableList<ViewType> = mutableListOf(),
+    private val onItemClick: (Drink) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun updateItems(newItems: List<ViewType>) {
@@ -27,6 +26,7 @@ class CocktailAdapter(
             notifyDataSetChanged()
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == 0) {
@@ -59,8 +59,7 @@ class CocktailAdapter(
         when (val item = itemSet[position]) {
             is ViewType.DRINK -> (holder as CocktailViewHolder).bind(
                 item.drinkList,
-                onItemClick,
-                onStarClick
+                onItemClick
             )
             is ViewType.INGREDIENT -> (holder as IngredientsViewHolder).bind(
                 item.ingredientsList,
@@ -71,13 +70,14 @@ class CocktailAdapter(
     }
 
     override fun getItemCount(): Int = itemSet.size
+
 }
 
 class CocktailViewHolder(
     private val binding: DrinkViewHolderBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: Drink, onItemClick: (Drink) -> Unit, onStarClick: (Drink) -> Unit) {
+    fun bind(item: Drink, onItemClick: (Drink) -> Unit) {
         Glide
             .with(binding.root)
             .load(item.drinkThumb)
@@ -88,23 +88,9 @@ class CocktailViewHolder(
 
         binding.tvDrinkName.text = item.drinkName ?: "NO NAME PROVIDED"
         itemView.setOnClickListener { item.let(onItemClick) }
-        binding.ibFavoriteCocktail.setOnClickListener { item.let(onStarClick) }
-
-        if (item.isFavorite) {
-            binding.ibFavoriteCocktail.setOnClickListener {
-                binding.ibFavoriteCocktail.setImageResource(
-                    R.drawable.ic_star_empty
-                )
-            }
-
-        } else {
-            binding.ibFavoriteCocktail.setOnClickListener {
-                binding.ibFavoriteCocktail.setImageResource(
-                    R.drawable.ic_star_filled
-                )
-            }
-        }
     }
+
+
 }
 
 class IngredientsViewHolder(

@@ -15,4 +15,5 @@
     <string name="tv_text_category">Category</string>
     <string name="tv_text_glass">Glass</string>
     <string name="tv_text_alcoholic">Alcoholic</string>
+    <string name="tv_text_non_alcoholic_cocktails">Non-Alcoholic Cocktails</string>
 </resources>

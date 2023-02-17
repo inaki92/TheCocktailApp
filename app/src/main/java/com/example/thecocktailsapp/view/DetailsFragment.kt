@@ -24,13 +24,7 @@ class DetailsFragment : BaseFragment() {
     private lateinit var currentCocktail: CocktailResponse
 
     private val cocktailAdapter by lazy {
-        CocktailAdapter(mutableListOf(),
-            {
-            },
-            { star ->
-
-
-            })
+        CocktailAdapter{}
     }
 
     private val binding by lazy {

@@ -66,7 +66,8 @@ fun List<CocktailResponse>?.mapToDrink(): List<Drink> {
             it.strGlass ?: "",
             ingredientsList.filterNotNull(),
             it.strInstructions ?: "",
-            measuresList.filterNotNull()
+            measuresList.filterNotNull(),
+            false
         )
     }?:return emptyList()
 

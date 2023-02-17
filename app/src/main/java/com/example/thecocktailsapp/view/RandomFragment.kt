@@ -30,20 +30,12 @@ class RandomFragment : BaseFragment(), SearchView.OnQueryTextListener {
 
 
     private val cocktailAdapter by lazy {
-        CocktailAdapter(mutableListOf(),
-            { item ->
+        CocktailAdapter{ item ->
                 //Item click
                 cocktailViewModel.id = item.idDrink
                 Toast.makeText(requireContext(), "Hola", Toast.LENGTH_LONG).show()
                 findNavController().navigate(R.id.action_RandomFragment_to_DetailsFragment)
-
-            },
-            { star ->
-                //Star click
-                updateFavorites(star)
-
-
-            })
+        }
     }
 
     override fun onCreateView(
@@ -156,7 +148,6 @@ class RandomFragment : BaseFragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(p0: String?): Boolean = true
-
 
 
 }

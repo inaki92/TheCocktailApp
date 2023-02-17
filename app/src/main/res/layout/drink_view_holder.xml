@@ -38,16 +38,6 @@
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/iv_cocktail_picture" />
 
-        <ImageButton
-            android:id="@+id/ib_favorite_cocktail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            android:contentDescription="@string/ib_content_description_star_button"
-            android:src="@drawable/ic_star_empty"
-            app:layout_constraintStart_toEndOf="@id/tv_drink_name" />
 
     </LinearLayout>
 

@@ -40,9 +40,4 @@ open class BaseFragment : Fragment() {
             .create()
             .show()
     }
-
-    protected fun updateFavorites(drink: Drink){
-        drink.isFavorite = !drink.isFavorite
-
-    }
 }
